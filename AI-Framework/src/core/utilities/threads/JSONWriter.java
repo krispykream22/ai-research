@@ -14,7 +14,7 @@ public class JSONWriter implements Callable<Boolean> {
 		try {
 			FileWriter writer = new FileWriter(dir);
 			writer.write(obj.toJSONString());
-			writer.flush();
+			writer.close();
 			flag = 1;
 		} catch (IOException e) {
 			e.printStackTrace();

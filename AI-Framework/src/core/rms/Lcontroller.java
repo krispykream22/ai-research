@@ -1,6 +1,7 @@
 package core.rms;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.json.simple.JSONObject;
 
@@ -18,6 +19,14 @@ public class Lcontroller {
 		permision_types = new ArrayList<String>();
 	}
 	
+	/*
+	 * Utilities
+	 */
+	
+	/*
+	 * Node interaction
+	 */
+	
 	//NEEDS WORK
 	public int newLnode(Lnodetype type, int threads) {
 		int id = nodes.size();
@@ -25,10 +34,15 @@ public class Lcontroller {
 		case cached:
 			nodes.add(new Lnode(Lnodetype.cached, id, threads));
 			break;
+		case fixed:
+			nodes.add(new Lnode(Lnodetype.fixed, id, threads)); 
 		}
 		return id;
 	}
 	
+	/*
+	 * Group interaction
+	 */
 	public boolean createGroup(String groupName) {
 		for(Group i : groups) {
 			if(i.groupName.equals(groupName)) {
@@ -36,7 +50,8 @@ public class Lcontroller {
 				return false;
 			}
 		}
-		groups.add(new Group(groupName));
+		int id = groups.size();
+		groups.add(new Group(groupName, id));
 		return true;
 	}
 	
@@ -51,6 +66,7 @@ public class Lcontroller {
 		return false;
 	}
 	
+	//NEEDS WORK
 	public boolean createPermission() {
 		
 		return false;
