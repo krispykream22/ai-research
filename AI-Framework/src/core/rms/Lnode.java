@@ -31,14 +31,19 @@ public class Lnode {
 	 * Task functionality
 	 */
 	
-	public int submitTask(Callable<ArrayList<Object>> task, int hash) {
+	public UUID newUUID() {
+		return (UUID.randomUUID());
+	}
+	
+	public int submitTask(Callable<ArrayList<Object>> task, UUID uuid) {
 		int id = unfinishedResults.size();
-		unfinishedResults.add(new TaskResult(this, executor.submit(task), id, hash));
+		unfinishedResults.add(new TaskResult(this, executor.submit(task), id, uuid));
 		return unfinishedResults.size();
 	}
 	
-	public void submitTask(Thread task, int hash) {
-		
+	public void submitTask(Thread task) {
+		int id = unfinishedResults.size();
+		executor.submit(task);
 	}
 	
 	public ArrayList<Object> getResults(int id) {

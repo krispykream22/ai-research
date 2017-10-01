@@ -10,13 +10,11 @@ public class Lcontroller {
 	private ArrayList<Lnode> nodes;
 	private ArrayList<Group> groups;
 	private ArrayList<JSONObject> permisions;
-	private ArrayList<String> permision_types;
 	
 	public Lcontroller() {
 		nodes = new ArrayList<Lnode>();
 		groups = new ArrayList<Group>();
 		permisions = new ArrayList<JSONObject>();
-		permision_types = new ArrayList<String>();
 	}
 	
 	/*
@@ -60,7 +58,7 @@ public class Lcontroller {
 		for(Group i : groups) {
 			if(i.groupName.equals(groupName)) {
 				Lnode temp = nodes.get(id);
-				
+				i.addNode(temp);
 			}
 		}
 		return false;
